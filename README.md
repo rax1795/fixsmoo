@@ -1,0 +1,2 @@
+# fixsmoo
+Singapore Management University has a large school compound. Faults and problems often take time to be reported and fixed. This leads to a drop in the overall experience for visitors, faculty, staff and students.    FixSmoo is an Integrated Web Application that enables the everyday person (faculty, student, staff, visitors) to report issues and notify building and facilities management in real time. Through this application the everyday user is able to take charge of the facilities they use and improve the general functionalities of their facilities.  
