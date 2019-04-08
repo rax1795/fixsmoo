@@ -1,0 +1,313 @@
+
+html,
+:root,
+body {
+  background: radial-gradient(ellipse farthest-corner at center, #ffff 100%) no-repeat;
+  height: auto;
+  width: auto;
+  overflow: auto;
+}
+
+.leaderboard-container{
+  height: auto;
+  align-content: center;
+
+}
+
+.col-centered{
+  float: none;
+  margin: 0 auto;
+  text-align: center;
+
+  }
+
+.leaderboard {
+  color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  font-family: Lato, sans-serif;
+  height: 100px;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 1.5rem auto;
+  height: auto;
+  max-width: 40em;
+  width: auto;
+}
+
+.leaderboard header {
+  background-color: #cc6699;
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+  padding: 1.5rem;
+  width: auto;
+  margin: auto;
+  height: auto;
+
+}
+
+.leaderboard h1 {
+  color: #fff;
+  font-size: 50px;
+  text-align: center;
+  margin: auto;
+
+}
+
+.point {
+  float: right;
+  font-size: 25px;
+  font-weight:bold;
+  color: black;
+  padding: .8rem;
+  text-align: center;
+
+}
+
+.leader{
+  float: left;
+  font-size: 25px;
+  font-weight:bold;
+  color: black;
+  padding: .7rem;
+  text-align: center;
+
+}
+
+.points {
+  float: right;
+  font-size: 25px;
+  background: #26A6AE;
+  border-radius: 120%;
+  color: #fff;
+  padding: .6rem;
+  text-align: center;
+}
+
+.leaders {
+  float: left;
+  font-size: 25px;
+  font-family: 'Segoe UI',  sans-serif;
+  color: rgb(5, 5, 5);
+  padding: .5rem;
+  text-align: center;
+}
+
+.main {
+  background-color: #FEDFF7;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(0, 0, 0, .25);
+  box-sizing: border-box;
+  width: auto;
+  height: auto;
+  margin: auto;
+  max-width: 40em;
+}
+
+.alignleft {
+  float: left;
+  position: absolute;
+  transform: translate(39%, 60%);
+  
+}
+.alignright {
+  float: right;
+  position: absolute;
+  transform: translate(39%, 60%);
+}
+
+.rb-grid {
+  list-style: none;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.rb-grid li {
+  background-color: #FEDFF7;
+  border: 1px solid rgba(0, 0, 0, .15);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .25);
+  box-sizing: border-box;
+  cursor: pointer;
+  float: left;
+  font-size: 1.125rem;
+  font-style: italic;
+  margin-top: -1px;
+  padding: 1.8rem;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: transform .5s ease;
+  width: 100%;
+}
+
+.rb-grid li:hover {
+
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+  background-color: #FEDFF7;;
+}
+
+li p {
+  font-size: 1rem;
+  font-style: normal;
+  margin: 0;
+}
+
+p:first-letter {
+  margin-left: .5rem;
+}
+
+.rb-overlay {
+  background: #fff;
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: auto;
+  -webkit-transition: all 0.4s ease;
+  -moz-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+  z-index: -1;
+  pointer-events: none;
+  cursor: default;
+}
+
+.rb-overlay:hover {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  z-index: 999999999;
+}
+
+.rb-close {
+  position: absolute;
+  top: 0.4em;
+  right: 0.4em;
+  width: 2em;
+  height: 2em;
+  text-indent: -9000px;
+  cursor: pointer;
+  z-index: 1000;
+}
+
+.rb-close::before {
+  content: 'x';
+  font-weight: 100;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 3em;
+  line-height: 0.6;
+  text-align: center;
+  text-indent: 0px;
+}
+
+.profile {
+  display: block;
+  margin: 2rem 10%;
+  max-width: 75rem;
+  text-align: left;
+  width: 80%;
+}
+
+.profile span {
+  font-style: normal;
+}
+
+.rb-image {
+  float: left;
+  margin: 0 1rem;
+  padding: 1rem;
+  border: 1px solid #ccc;
+}
+
+.profile h2 {
+  font-size: 2rem;
+  font-style: normal;
+  font-weight: 700;
+  margin: auto;
+}
+
+.profile strong {
+  line-height: 2;
+  margin-left: 2rem;
+}
+
+@media screen and (max-width: 63.125em) {
+  .rb-grid li {
+    width: 100%;
+    text-align: left;
+  }
+  .rb-grid li > div {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 30rem) { 
+  #leaderboard {
+  max-width:90%;
+  }
+  
+  .rb-image {
+    margin: auto;
+    float: none;
+    }
+  
+  .profile strong {
+    margin-left: 0;
+}
+
+.leadboard-card{
+  height: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: auto;
+  background-color: rgba(216, 22, 119, 0.13) !important;
+  }
+  
+  
+  .leaderboard-card-header h3{
+  color: black;
+  }
+  
+  .leadboard-card-body{
+  color: black;
+  }
+  
+  .leaderboard-card-footer{
+  color: white;
+  }
+
+p{
+text-align: justify;
+font-size: 100px;
+font-family: 'Segoe UI Light', sans-serif;
+}
+
+.cl {
+  float: none;
+  width: 33.33%;
+  padding: 5px;
+  } 
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

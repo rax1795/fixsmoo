@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+<!DOCTYPE html>
+  <html>
+      <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css" />
+          <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+          <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+          <!--Custom styles-->
+      </head> 
+
+  <body>
+    <div class="explore-container position-absolute">
+      <div class="row">  
+          <div class="btn-group">
+            <button type="button" class="btn btn-success">Building</button>
+            <button type="button" class="btn btn-success dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">SIS</a>
+              <a class="dropdown-item" href="#">SOE/SOSS</a>
+              <a class="dropdown-item" href="#">SOL</a>
+              <a class="dropdown-item" href="#">SOB</a>
+              <a class="dropdown-item" href="#">SOA</a>
+              <div class="dropdown-divider"></div>
+            </div>
+          </div>
+          <div class="btn-group">
+              <button type="button" class="btn btn-info">Facilties</button>
+              <button type="button" class="btn btn-info dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Toggle Dropdown</span>
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="#">Toliet</a>
+                <a class="dropdown-item" href="#">Classroom</a>
+                <a class="dropdown-item" href="#">Seminar Room</a>
+                <div class="dropdown-divider"></div>
+              </div>
+            </div>
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning">Status</button>
+                <button type="button" class="btn btn-warning dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Open</a>
+                  <a class="dropdown-item" href="#">Work in Progress</a>
+                  <a class="dropdown-item" href="#">Closed</a>
+                  <div class="dropdown-divider"></div>
+                </div>
+              </div>
+              <div class="btn-group">
+                  <button type="button" class="btn btn-danger">Severity</button>
+                  <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="sr-only">Toggle Dropdown</span>
+                  </button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="#">Low</a>
+                    <a class="dropdown-item" href="#">Medium</a>
+                    <a class="dropdown-item" href="#">High</a>
+                    <div class="dropdown-divider"></div>
+                  </div>
+                </div>
+        </div>
+      <!-- start of for loop -->
+      <div class="col-md-4" data-toggle="tooltip" title="Click for More Info">
+        <div class="explore-card">
+          <div style="text-align:center;">      
+          <img style="width:auto; height:200px; " class="card-img-top rounded img-fluid" src="https://www.kookaburra.com.au/images/ProductImages/500/ZCRMG030.jpg" alt="Card image cap">
+        </div>
+        <div class="card-body">
+          <p class="card-text text-left" style="font-size:15px">
+              <em>Description: </em><em>Whiteboard Spoilt</em>
+          </p>
+          <p class="card-text text-left" style="font-size:15px">
+              <em>Status: </em>
+              <em>Open</em>
+              <img src="http://www.clker.com/cliparts/u/g/F/R/X/9/green-circle-md.png" style="width:15px;height:15px;">
+          </p>
+          <p class="card-text text-left" style="font-size:15px">
+              <em>Building: </em>
+              <em>SIS</em>
+          </p>
+          <p class="card-text text-left" style="font-size:15px">
+              <em>Facilties: </em>
+              <em>Whiteboard</em>
+          </p>
+          <p class="card-text text-left" style="font-size:15px">
+              <em>Severity: </em>
+              <em>High</em>
+              <img src="https://www.iconsdb.com/icons/preview/red/exclamation-xxl.png" style="width:15px;height:15px;">
+          </p>
+          <p class="card-text text-left" style="font-size:15px">
+              <em>Date Logged: </em>
+              <em>09-01-2019 14:12:39</em>
+          </p>
+          </div>
+        </div>
+      </div>
+      <!-- end of for loop -->
+      <div class="col-md-4" data-toggle="tooltip" title="Click for More Info">
+          <div class="explore-card">
+            <div style="text-align:center;">      
+            <img style="width:auto; height:200px;" class="card-img-top rounded img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaxZ_RyaMLfrvpeChzyXGPACtHieOJjykukjJUCEy3qaVsiibEvw" alt="Card image cap">
+          </div>
+          <div class="card-body">
+            <p class="card-text text-left" style="font-size:15px">
+                <em>Description: </em><em>Whiteboard Spoilt</em>
+            </p>
+            <p class="card-text text-left" style="font-size:15px">
+                <em>Status: </em>
+                <em>Open</em>
+                <img src="http://www.clker.com/cliparts/u/g/F/R/X/9/green-circle-md.png" style="width:15px;height:15px;">
+            </p>
+            <p class="card-text text-left" style="font-size:15px">
+                <em>Building: </em>
+                <em>SIS</em>
+            </p>
+            <p class="card-text text-left" style="font-size:15px">
+                <em>Facilties: </em>
+                <em>Whiteboard</em>
+            </p>
+            <p class="card-text text-left" style="font-size:15px">
+                <em>Severity: </em>
+                <em>High</em>
+                <img src="https://www.iconsdb.com/icons/preview/red/exclamation-xxl.png" style="width:15px;height:15px;">
+            </p>
+            <p class="card-text text-left" style="font-size:15px">
+                <em>Date Logged: </em>
+                <em>09-01-2019 14:12:39</em>
+            </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" data-toggle="tooltip" title="Click for More Info">
+            <div class="explore-card">
+              <div style="text-align:center;">      
+              <img style="width:auto; height:200px;" class="card-img-top rounded img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaxZ_RyaMLfrvpeChzyXGPACtHieOJjykukjJUCEy3qaVsiibEvw" alt="Card image cap">
+            </div>
+            <div class="card-body">
+              <p class="card-text text-left" style="font-size:15px">
+                  <em>Description: </em><em>Whiteboard Spoilt</em>
+              </p>
+              <p class="card-text text-left" style="font-size:15px">
+                  <em>Status: </em>
+                  <em>Open</em>
+                  <img src="http://www.clker.com/cliparts/u/g/F/R/X/9/green-circle-md.png" style="width:15px;height:15px;">
+              </p>
+              <p class="card-text text-left" style="font-size:15px">
+                  <em>Building: </em>
+                  <em>SIS</em>
+              </p>
+              <p class="card-text text-left" style="font-size:15px">
+                  <em>Facilties: </em>
+                  <em>Whiteboard</em>
+              </p>
+              <p class="card-text text-left" style="font-size:15px">
+                  <em>Severity: </em>
+                  <em>High</em>
+                  <img src="https://www.iconsdb.com/icons/preview/red/exclamation-xxl.png" style="width:15px;height:15px;">
+              </p>
+              <p class="card-text text-left" style="font-size:15px">
+                  <em>Date Logged: </em>
+                  <em>09-01-2019 14:12:39</em>
+              </p>
+              </div>
+            </div>
+          </div>
+  </div>
+</body>
+
+  <div style="text-align:center;">
+    <ul class="pagination">
+        <li class="page-item enable">
+        <a class="page-link" href="#">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item active"><a class="page-link" href="#">2 <span class="sr-only">(current)</span></a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+    </ul>
+  </div>
+  
+</html>
+{% endblock %}

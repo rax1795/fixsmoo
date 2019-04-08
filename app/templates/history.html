@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css" />
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  
+</head>
+
+<body> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/history.css') }}">
+        <h2>Past Records</h2>
+        <div class="row justify-content-end">
+                <div id="custom-search-input ">
+                    <div class="input-group col-md-12">
+                        <form method="POST" action="url-for('search')">
+                        <input type="text" name='search' class="search-query form-control" placeholder="Search Case ID" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-danger" name='submit' type="button">
+                                </form>
+                                <span class=" glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+        </div>
+        <br>
+
+    <div class="row">
+        <table class="table" id="caselist">
+            <thead>
+                <tr>
+                    <th>Case ID</th>
+                    <th>Case Status</th>
+                    <th>Reported Date</th>
+                    <th>Last Update</th>
+                    <th>Action</th>
+                <tr>
+            </thead>
+            <tbody>
+                {% for cl in caseLogs %}
+                <tr>
+                    <td>{{ cl.caseID }}</td>
+                    <td>{{ person.age }}</td>
+                    <td>{{ person.option }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>                          
+
+</body>
+</html>       
+{% endblock %}

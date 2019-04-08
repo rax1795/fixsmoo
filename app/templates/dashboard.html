@@ -1,0 +1,218 @@
+{% extends 'baseadmin.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css" />
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <!-- <script src="http://code.jquery.com/jquery-latest.js"> </script>
+  <script type="text/javascript">
+    setInterval("my_function();",10000); 
+    function my_function()
+        {
+        $('#refresh').load(location.href + "#dashboard");
+        }
+ </script> -->
+    <script>
+        $(document).ready(function () {
+            $('#caselist').DataTable({
+                "pagingType": "simple" // "simple" option for 'Previous' and 'Next' buttons only
+            });
+            $('.dataTables_length').addClass('bs-select');
+
+            $('.alert').alert();
+        });
+        
+    </script>
+</head>
+<body>   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/shstyle.css') }}">
+    <div class="container position-absolute" id="refresh">
+        <div class="card text-center" >
+            <div class="card-header " >
+                <ul class="nav nav-tabs card-header-tabs" id="tabs">
+                    <!--Start Of the Tab Header-->
+                    <li class="nav-item">
+                        <a class="active nav-link active" href="#post" data-toggle="tab">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="active nav-link active" href="#link" data-toggle="tab">Case Search</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="active nav-link active" href="#duplicate" data-toggle="tab">Check Duplication</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-body" id="dashboard">
+                <div class="lastupdate">
+                    <p style="text-align: right"> <img src="{{url_for('static', filename='lasttime.png')}}" width="12px" height="12px"> Last Updated Date-Time:{{timenow}}</p>
+                </div>
+                <div class="tab-content">
+                    <div class="{%if active == 'dashboardtab' %}active{%endif %} tab-pane " id="post">
+                        <div class="container"> 
+                            <!--3 Status Card-->
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card" id="cardstatus">
+                                        <div  id="status1">Open</div>
+                                        <div class="card-body" >
+                                            <p class="card-text">{{values1}}</p>
+                                            <div class="card-footer"><a href="#" class="button">View List</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card" id="cardstatus">
+                                        <div  id="status2">Under Review</div>
+                                        <div class="card-body">
+                                            <p class="card-text">{{values2}}</p>
+                                            <div class="card-footer"><a href="#" class="button">View List</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="card" id="cardstatus">
+                                        <div  id="status3">Fix In-Progress</div>
+                                        <div class="card-body">
+                                            <p class="card-text">{{values3}}</p>
+                                        </div>
+                                        <div class="card-footer"><a href="#" class="button">View List</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Start of Chart-->
+                        <div class="container" >
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="card" id="chart" >
+                                         <!--This Week's Cases-->
+                                        <p class="chartname">Cases by Day</p>
+                                        <p>
+                                            <div>
+                                                <a href="https://plot.ly/~xiaorongw/13/?share_key=OLLFdqIgYA8x81GFImjD8b" target="_blank" title="cases" style="display: block; text-align: center;"><img src="https://plot.ly/~xiaorongw/13.png?share_key=OLLFdqIgYA8x81GFImjD8b" alt="cases" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+                                                <script data-plotly="xiaorongw:13" sharekey-plotly="OLLFdqIgYA8x81GFImjD8b" src="https://plot.ly/embed.js" async></script>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div> 
+                                <!--Backlogged pie-->
+                                <div class="col-md-6">
+                                    <div class="card" id="chart">
+                                        <p class="chartname">Backlogged Cases</p>
+                                        <p>
+                                            <div>
+                                                    <a href="https://plot.ly/~xiaorongw/19/?share_key=01pWwX9AcgxURvDxCFpcuv" target="_blank" title="backlog_pie" style="display: block; text-align: center;"><img src="https://plot.ly/~xiaorongw/19.png?share_key=01pWwX9AcgxURvDxCFpcuv" alt="backlog_pie" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+                                                    <script data-plotly="xiaorongw:19" sharekey-plotly="01pWwX9AcgxURvDxCFpcuv" src="https://plot.ly/embed.js" async></script>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div>
+                                 <!--Management Workflow-->
+                                <div class="col-md-6">
+                                    <div class="card" id="chart">
+                                        <p class="chartname">Average Time Taken in Workflow</p>
+                                            <div>
+                                                <a href="https://plot.ly/~xiaorongw/15/?share_key=wQM4V7tIihLLdWw6UCm4n9" target="_blank" title="timetaken" style="display: block; text-align: center;"><img src="https://plot.ly/~xiaorongw/15.png?share_key=wQM4V7tIihLLdWw6UCm4n9" alt="timetaken" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+                                                <script data-plotly="xiaorongw:15" sharekey-plotly="wQM4V7tIihLLdWw6UCm4n9" src="https://plot.ly/embed.js" async></script>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div>
+                                 <!--Building pie-->
+                                <div class="col-md-6">
+                                    <div class="card" id="chart">
+                                        <p class="chartname">Number of Cases by Building This Month</p>
+                                            <div>
+                                                <a href="https://plot.ly/~xiaorongw/23/?share_key=eJrjRfjIeG0AIJETqpqBoq" target="_blank" title="building_pie" style="display: block; text-align: center;"><img src="https://plot.ly/~xiaorongw/23.png?share_key=eJrjRfjIeG0AIJETqpqBoq" alt="building_pie" style="max-width: 100%;width: 600px;"  width="600" onerror="this.onerror=null;this.src='https://plot.ly/404.png';" /></a>
+                                                <script data-plotly="xiaorongw:23" sharekey-plotly="eJrjRfjIeG0AIJETqpqBoq" src="https://plot.ly/embed.js" async></script>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                    </div>
+                    <!--Case Search Tab-->
+                    <div class="{%if active == 'searchtab' %}active{%endif %} tab-pane" id="link" name='searchtab'>
+                            <div class="row justify-content-end">
+                                    <div  id="custom-search-input " >
+                                        <div class="input-group col-md-12" >
+                                            <form action="" method="POST"  >
+                                                <button class="btn btn-danger" type="submit" style="float:right">
+                                                        <span class=" glyphicon glyphicon-search"></span>
+                                                </button>
+                                                <input type="text" name="searchcaselog" class=" search-query form-control"  placeholder="Search Case ID..." />
+                                                <!-- <span class="input-group-btn"> -->
+                                                
+                                                    <!-- </span> -->
+                                            </form>
+                                            
+                                        </div>
+                                    </div>
+                            </div>
+                            <br>
+                        <!--Start Of Search Table-->
+                        <div class="row table-responsive" > 
+                            <table class="table table-hover" id="caselist">
+                                <thead>
+                                    <tr>
+                                        <th>Case ID</th>
+                                        <th>Building</th>
+                                        <th>Location</th>
+                                        <th>Logged By</th>
+                                        <th>Reported Date</th>
+                                        <th>Case Status</th>
+                                        <th>Last Update</th>
+                                        <th>Remarks</th>
+                                    <tr>
+                                </thead>
+                                <tbody>
+                                    {% for eachdict in searchlist %}
+                                    
+                                    <tr>
+                                        <td><a href="{{ url_for('casedetailadmin', caseid=eachdict['CaseID']) }}">{{ eachdict["CaseID"]}}</a></td>
+                                        <td>{{ eachdict["Building"]}}</td>
+                                        <td>{{ eachdict["Location"]}}</td>
+                                        <td>{{ eachdict["Logged By"]}}</td>
+                                        <td>{{ eachdict["Reported Date"]}}</td>
+                                        <td>{{ eachdict["Case Status"]}}</td>
+                                        <td>{{ eachdict["Last Update"]}}</td>
+                                        <td>{{ eachdict["Remarks"]}}</td>
+
+                                    </tr>   
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>  
+                            <!--Start Of Check Duplicate-->
+                        <div class="{%if active == 'duplicatetab' %}active{%endif %} tab-pane" id="duplicate" name='duplicatetab'>
+                            <form method="POST">
+                            <button style="margin:20px">Check Duplicate</button>
+                            <input type="hidden" id="" name="check" value="true">
+                            </form>
+                            {% for k,v in potential_duplicate.items() %}
+                            <div class="alert alert-warning alert-dismissible" role="alert">
+                                    CaseID {{k}}:  might be a duplicate case of {% for i,j in v.items() %} CaseID: <a href="#\" class="alert-link">{{i}}</a> {% endfor %}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                    </button>
+                            </div>
+                            {% endfor %}
+                        </div>                         
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>       
+{% endblock %}

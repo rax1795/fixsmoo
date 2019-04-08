@@ -2,35 +2,81 @@
 
 {% block title %}
     {% if title %}{{ title }} - FixSmoo{% else %}Welcome to FixSmoo{% endif %}
+    
 {% endblock %}
 
 {% block navbar %}
-    <nav class="navbar navbar-default">
-        <div class="container">
-            <div class="navbar-header" colour="red">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="{{ url_for('index') }}">FixSmoo</a>
-            </div>
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('index') }}">Home</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    {% if current_user.is_anonymous %}
-                    <li><a href="{{ url_for('login') }}">Login</a></li>
-                    <li><a href="{{ url_for('register') }}">Register</a></li>
-                    {% else %}
-                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
-                    {% endif %}
-                </ul>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!--Custom styles-->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+        
+    </head>
+    <body>
+        {% if current_user.username == "guest"%}
+        <div class="topnav">
+            <div class="container">
+                <div class="topnav a">
+                    <ul class="topnav navbar-nav navbar-left">
+                        <img class="logo">
+                            <a class="navbar-brand" href="{{ url_for('index') }}">
+                                <img src="../static/fixsmoo.png" height= "35px" width="35px" alt="FixSmoo"></img>
+                            </a>
+                    </ul>
+                    <ul class="topnav navbar-nav navbar-right">
+                        <li><a href="{{ url_for('logout') }}">Login</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </nav>
+        {% endif %}
+        {% if current_user.username != "guest"%}
+        {% if current_user.username != "admin"%}
+        <div class="topnav">
+                <div class="container">
+                    <div class="topnav a">
+                        <ul class="topnav navbar-nav navbar-left">
+                            <img class="logo">
+                                <a class="navbar-brand" href="{{ url_for('index') }}">
+                                    <img src="../static/fixsmoo.png" height= "35px" width="35px" alt="FixSmoo"></img>
+                                </a>
+                            <li><a href="{{ url_for('user', username=current_user.username) }}">My Activity</a></li>
+                            <li><a href="{{ url_for('caselist') }}">Explore</a></li>
+                        </ul>
+                        <ul class="topnav navbar-nav navbar-right">
+                            {% if current_user.is_anonymous %}
+                            <li><a href="{{ url_for('login') }}">Login</a></li>
+                            <li><a href="{{ url_for('register') }}">Register</a></li>
+                            {% else %}
+                            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        {% endif %}
+        {% if current_user.username == "admin"%}
+        <div class="topnav">
+                <div class="container">
+                    <div class="topnav a">
+                        <ul class="topnav navbar-nav navbar-left">
+                            <img class="logo">
+                                <a class="navbar-brand" href="{{ url_for('dashboard') }}">
+                                    <img src="../static/fixsmoo.png" height= "35px" width="35px" alt="FixSmoo"></img>
+                                </a>
+                        <ul class="topnav navbar-nav navbar-right">
+                            <li><a href="{{ url_for('loginadmin') }}">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </body>
 {% endblock %}
 
 {% block content %}

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block content %}
+    <!DOCTYPE html>
+    <html>
+    <head>
+
+            <script src="https://static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js"></script>
+            <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+            <script src="leaderboard.js"></script>
+            <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.2.min.js"></script>
+            <meta charset="UTF-8">
+            <meta name="robots" content="noindex">
+
+            <title>Leaderboard</title>
+            <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
+            <link rel="mask-icon" type href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
+            <link rel="canonical" href="https://codepen.io/anon/pen/gExpKz">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css">
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/leaderboard1.css') }}">
+    </head>
+
+    <body>
+        <div class="leaderboard-container">
+            <div class="d-flex justify-content-center h-100">
+                <div class = "leaderboard-card">
+                    <div class="leaderboard">
+                            <header>
+                                <h1> <img src="/static/leadership.png" alt="FixSmoo" width="55" height="55" style="float:left">Leaderboard</h1></header>
+
+                        <div class="main">
+                            <ul id="rb-grid" class="rb-grid clearfix">
+                                
+                                <ul>
+                                    <span class="leader" alight ="left";>Name</span>
+                                    <span class="point" alight ="right">Points</span>
+                                </ul>
+                                {% if 1 <= length %}
+                                <li>
+                                        <img src="/static/gold-medal.png" alt="Gold" width="45" height="45" style="float:left"><span class="leaders">{{users[0][0]}}</span>
+                                        <img src="/static/crown.png" alt="Crown" width="25" height="35" style="float:center"><span class="points">{{users[0][1]}}</span>
+                                </li>
+                                {%endif%}
+                                {% if 2 <= length %}
+                                <li>
+                                    <img src="/static/silver-medal.png" alt="Silver" width="45" height="45" style="float:left"><span class="leaders">{{users[1][0]}}</span>
+                                    <span class="points">{{users[1][1]}}</span>
+                                </li>
+                                {%endif%}
+                                {% if 3 <= length %}
+                                <li>
+                                        <img src="/static/bronze-medal.png" alt="Bronze" width="45" height="45" style="float:left"><span class="leaders">{{users[2][0]}}</span>
+                                    <span class="points">{{users[2][1]}}</span>
+                                </li>
+                                {%endif%}
+                                {% if 4 <= length %}
+                                <li>
+                                    <img src="/static/medal.png" alt="Medal" width="45" height="45" style="float:left"><span class="leaders">{{users[3][0]}}</span>
+                                    <span class="points">{{users[3][1]}}</span>
+                                </li>
+                                {%endif%}
+                                {% if 5 <= length %}
+                                <li>
+                                    <img src="/static/medal.png" alt="Medal" width="45" height="45" style="float:left"> <span class="leaders">{{users[4][0]}}</span>
+                                    <span class="points">{{users[4][1]}}</span>
+                                </li>
+                                {%endif%}
+                                {% if 6 <= length %}
+                                <li>
+                                    <img src="/static/medal.png" alt="Medal" width="45" height="45" style="float:left"><span class="leaders">{{users[5][0]}}</span>
+                                    <span class="points">{{users[5][1]}}</span>
+                                </li>
+                                {%endif%}
+                                {% if 7 <= length %}
+                                <li>
+                                    <img src="/static/medal.png" alt="Medal" width="45" height="45" style="float:left"><span class="leaders">{{users[6][0]}}</span>
+                                    <span class="points">{{users[6][1]}}</span>
+                                </li>
+                                {%endif%}
+                                {% if 8 <= length %}
+                                <li>
+                                    <img src="/static/medal.png" alt="Medal" width="45" height="45" style="float:left"><span class="leaders">{{users[7][0]}}</span>
+                                    <span class="points">{{users[7][1]}}</span>
+                                </li>
+                                {%endif%}
+                                {% if 9 <= length %}
+                                <li>
+                                    <img src="/static/medal.png" alt="Medal" width="45" height="45" style="float:left"><span class="leaders">{{users[8][0]}}</span>
+                                    <span class="points">{{users[8][1]}}</span>
+                                </li>
+                                {%endif%}
+                                {% if 10 <= length %}
+                                <li>
+                                    <img src="/static/medal.png" alt="Medal" width="45" height="45" style="float:left"><span class="leaders">{{users[9][0]}}</span>
+                                    <span class="points">{{users[9][1]}}</span>
+                                </li>
+                                {%endif%}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </body>
+    </html>
+{% endblock %}

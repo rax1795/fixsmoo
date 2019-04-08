@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block content %}
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {# application content needs to be provided in the app_content block #}
+{% block app_content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css" />
+  <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  
+</head>
+
+<body> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/history.css') }}">
+        <h2>Past Records</h2>
+        <div class="row justify-content-end"> 
+                <div id="custom-search-input "> 
+                    <div class="input-group col-md-12"> 
+                        <form method="POST" action="{{url_for('search')}}"> 
+                        <span class="input-group-btn"> 
+                            <button class="btn btn-danger" type="submit" style="float:right">  
+                                <span class=" glyphicon glyphicon-search"></span> 
+                            </button> 
+                            <input type="text" name='search' class="search-query form-control" placeholder="Search Case ID" style="float:right" /> 
+                        </span> 
+                    </form> 
+                    </div> 
+                </div> 
+        </div>
+        <br>
+    <table>
+        <tr valign="top">
+            <td>
+                <h1>User: {{ user.username }}</h1>
+                <h2><p>{{ usertype.userType }}</p></h2>
+                <h2>{% if user.points %}<p> Points earned: {{ user.points }}</p>{% endif %}</h2>
+            </td>
+        </tr>
+    </table>
+    <div class="row">
+        <table class="table" id="caselist">
+            <thead>
+                <tr>
+                    <th>Case ID</th>
+                    <th>Case Status</th>
+                    <th>Reported Date</th>
+                    <th>More Details</th>
+                <tr>
+            </thead>
+            <tbody>
+                {% for cl in case %}
+                <tr>
+                    <td>{{ cl.caseID }}</td>
+                    <td>{{ cl.caseStatus }}</td>
+                    <td>{{ cl.dateTime.date() }}</td>
+
+                    <td><a href="{{ url_for('casedetail', caseid=cl.caseID) }}">Case Details</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>                          
+
+</body>
+</html>       
+{% endblock %}
+{% endblock %}

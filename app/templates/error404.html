@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block app_content %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Custom styles-->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+
+    </head>
+    <body>
+        <div class="text-container">
+    
+            <h1> <img src="/static/fixsmoocry.png" alt="FixSmoo" height="170px" width= "170px" style="float:left"><p style = "font-family:georgia,garamond,serif;font-size:40px;font-style:italic;text-align:left; word-spacing: 5px; padding-left:5em " ><br>Error 404 File not found! <img src="/static/sad.png" alt="FixSmoo" height="50px" width= "50px" style="float:center" hspace="10"></br></p></h1>
+        </div>
+     
+    </body>
+</html>
+{% endblock %}
+
+
+
+

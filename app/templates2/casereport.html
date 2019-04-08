@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block app_content %}
+<!DOCTYPE html>
+<html>
+
+<body>
+    <form action="{{ url_for('case') }}" method="post" enctype='multipart/form-data'>
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            <label for="building">Where on campus is the issue?</label>
+            {{ form.building( class_ ='form-control') }}
+            <!-- <input type="email" class="form-control" id="InputEmail" aria-describedby="emailHelp" placeholder="Enter email"> -->
+            <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        </div>
+        <div class="form-group">
+            <label for="level">What level is the issue on?</label>
+            <!-- <input type="password" class="form-control" id="InputPassword" placeholder="Password"> -->
+            {{ form.level( class_ ='form-control') }}
+        </div>
+        <div class="form-group">
+            <label for="location">What location is it at?</label>
+                <!-- <input type="password" class="form-control" id="InputPassword" placeholder="Password"> -->
+                {{ form.location( class_ ='form-control') }}
+        </div>
+        <div class="form-group">
+            <label for="unit">What is the issue near to/at? (eg. GSR2-02)</label>
+            <!-- <input type="password" class="form-control" id="InputPassword" placeholder="Password"> -->
+            {{ form.unit( class_ ='form-control') }}
+            {% for error in form.unit.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="facility">What facility item has an issue?</label>
+            <!-- <input type="password" class="form-control" id="InputPassword" placeholder="Password"> -->
+            {{ form.facility( class_ ='form-control') }}
+        </div>
+        <div class="form-group">
+            <label for="description">Please describe the issue</label>
+            <!-- <input type="password" class="form-control" id="InputPassword" placeholder="Password"> -->
+            {{ form.description( class_ ='form-control') }}
+        </div>
+        <div class="form-group">
+            <label for="photo">Any photos of the issue?</label>-->
+            <!-- <input type="password" class="form-control" id="InputPassword" placeholder="Password"> -->
+            {{ form.photo( class_ ='form-control') }}
+            {% for error in form.unit.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="severity">How severe is the issue?</label>
+            <!-- <input type="password" class="form-control" id="InputPassword" placeholder="Password"> -->
+            {{ form.severity( class_ ='form-control') }}
+        </div>
+        <div class="form-group">
+            <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+            {{ form.submit(class_='btn btn-primary') }}
+        </div>
+        
+    </form>
+    <script>
+        let building_select = document.getElementById('building');
+        let level_select = document.getElementById('level');
+
+        building_select.onclick = function () {
+            building = building_select.value;
+
+            fetch('/floor/' + building).then(function (response) {
+                response.json().then(function (data) {
+                    // console.table(data);
+                    let = optionHTML = '';
+                    for (let level of data.levels) {
+                        optionHTML += '<option value="' + level.id + '">' + level.lvl + '</option>';
+                    }
+
+                    level_select.innerHTML = optionHTML;
+                });
+            });
+        }
+    </script>
+</body>
+
+
+</html>
+{% endblock %}

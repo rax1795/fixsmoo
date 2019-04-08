@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html,body{
+background-color:#ffff;
+background-size: cover;
+background-repeat: no-repeat;
+height: auto;
+width: auto;
+font-family: 'Segoe UI Light', sans-serif;
+min-width: auto;
+overflow: -moz-hidden-unscrollable;
+}
+
+.container{
+height: auto;
+align-content: center;
+width: auto;
+}
+
+.card{
+height: 590px;
+margin-top: auto;
+margin-bottom: auto;
+width: 400px;
+background-color: rgba(216, 22, 119, 0.13) !important;
+}
+
+.explore-card{
+width:100%;
+height:auto;
+border: .1rem solid #cc6699;
+border-radius: .25rem;
+margin-bottom: .90rem;
+border-spacing: 20px 20px;
+}
+
+.card-title {
+margin-bottom: .75rem;
+}
+
+.card-header {
+color: black;
+text-align: center;
+position: center;
+right: 20px;
+top: 0px
+
+}
+
+.card-body{
+color: BLACK;
+}
+
+.card-footer{
+color: white;
+}
+
+.social_icon{
+position: absolute;
+right: 20px;
+top: -45px;
+}
+
+.input-group-prepend span{
+width: 50px;
+background-color: #FFC312;
+color: black;
+border:0 !important;
+}
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+}
+
+
+.login_btn{
+color: black;
+background-color: #FFC312;
+width: 100px;
+}
+
+.login_btn:hover{
+color: black;
+background-color: white;
+}
+
+/* Add a black background color to the top navigation */
+.topnav {
+width: auto;
+height: auto;
+background-color: #cc6699;
+overflow: hidden;
+left: 0;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+color: #f2f2f2;
+text-align: center;
+padding: 8px 22px;
+text-decoration: none;
+font-size: 18px;
+font-family: 'Segoe UI Light', sans-serif;
+overflow: hidden;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+background-color: #ddd;
+color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+background-color: #4CAF50;
+color: white;
+}
+
+.logo {
+display: inline-block;
+vertical-align: top;
+margin-right: 20px;
+margin-top: 40px;    /* if you want it vertically middle of the navbar. */
+}
+
+ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+}
+
+li {
+float: left;
+}
+
+li a {
+display: block;
+color: white;
+text-align: center;
+padding: 16px 20px;
+text-decoration: none;
+}
+
+li a:hover {
+background-color: #ffff;
+}
+
+.image-container {
+display: flex;
+justify-content: center;
+outline: 0; 
+max-width: auto; 
+height: auto; 
+}
+
+.image-wrap {
+display: flex;
+justify-content: center;
+border: 30;
+max-width: auto; 
+height: auto; 
+width: auto;
+}
+
+.text-container{
+width:auto;
+align-content: center;
+padding: 2em;
+height: 35%;
+}
+
+.welcome-msg{
+padding: 2em;
+height:0%; 
+}
+
+p {
+text-align: justify;
+font-size: 17px;
+font-family: 'Segoe UI Light', sans-serif;
+word-wrap: break-word;
+position: center;
+}
+
+
+/* Three image containers (use 25% for four, and 50% for two, etc) */
+.column {
+float: left;
+width: 40%;
+padding: 5px;
+}
+  
+/* Clear floats after image containers */
+.row::after {
+content: "";
+clear: both;
+display: table;
+}
+
+.involved {
+float: left;
+width: calc((100% - 42px)/3);
+margin-left: 20px;
+position: relative;
+}
+
+.get-involved {
+padding-top: 0;
+padding-bottom: 20px;
+-webkit-transition: padding linear .3s;
+-o-transition: padding linear .3s;
+transition: padding linear .3s;
+}
+
+.involve-container {
+padding-right: 15px;
+padding-left: 15px;
+margin-right: auto;
+margin-left: auto;
+}
+
+col-md-4{
+position: relative;
+min-height: 2px;
+padding-right: .9375rem;
+padding-left: .9375rem;
+margin-right: auto;
+margin-left: auto;
+}
+
+.pagination {
+display: inline-block;
+}
+
+.breadcrumb{
+border-radius: .25rem;
+margin-bottom: 1rem;
+}
+
+element.style {
+text-align: center;
+}

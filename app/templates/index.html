@@ -1,6 +1,103 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
-
 {% block content %}
-    <h1>Welcome back, {{ current_user.username }}!</h1>
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-info" role="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        {# application content needs to be provided in the app_content block #}
+{% block app_content %}
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <!--Custom styles-->
+            <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+
+        </head>
+        <body>
+            <div class="welcome-msg">
+                {% if user.username == "guest"%}
+                <h3>Welcome to FixSmoo!</h3>
+                {% endif %}
+                {% if user.username != "guest"%}
+                <h3>Welcome back, {{ current_user.username }}!</h3>
+                {% endif %}
+            </div>
+            
+            <div class="text-container">
+                <p>Singapore Management University has a large school compound with a lot of facilitiy provides for visitors, faculty, staff and students, thus, it is important that the facilities are working fine at all time. 
+                    With the aim of this, FixSmoo is an Integrated Web Application that enables the faculty, student, staff, visitors to report issues and notify building and facilities management in real time. 
+                    Through this application every user is able to take charge of the facilities they use in SMU and improve the general functionalities of their facilities.
+                </p>
+                <hr>
+            </div>
+            
+            <section id="get-involved" class="get-involved"></section>
+                <div class = "row">
+                    <div class="column">
+                        <div class="image-container">
+                            <a href="{{ url_for('report') }}" class="open-drop active">
+                                <div class="image-wrap">
+                                    <img src="../static/report1.png" height="150px" width= "150px" alt="report">
+                                </div>
+                                <div class="involved-desc">
+                                    <h3 class="title">Submit a new case</h3>
+                                    <div class="desc">Have a faculty facility to report? Report here.</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="image-container">
+                            <a href="{{ url_for('status') }}" class="open-drop active">
+                                <div class="image-wrap">
+                                    <img src="../static/check.png" height="150px" width= "150px" alt="status">
+                                </div>
+                                <div class="involved-desc">
+                                    <h3 class="title">Check case status</h3>
+                                    <div class="desc">Reported a case before? Check status here.</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% if user.username != "guest"%}
+                    <div class="column">
+                        <div class="image-container">
+                            <a href="{{ url_for('leaderboard') }}" class="open-drop active">
+                                <div class="image-wrap">
+                                    <img src="../static/leaderboard.png" height="150px" width= "150px" alt="leaderboard">
+                                </div>
+                                <div class="involved-desc">
+                                    <h3 class="title">View Leaderboard</h3>
+                                    <div class="desc">Regularly reporting? View Leaderboard here.</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="image-container">
+                            <a href="{{ url_for('user',username=current_user.username)}}" class="open-drop active">
+                                <div class="image-wrap">
+                                    <img src="../static/history.png" height="150px" width= "150px" alt="history">
+                                </div>
+                                <div class="involved-desc">
+                                    <h3 class="title">Track Past Cases</h3>
+                                    <div class="desc"> Track your past logged cases here.</div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+            </section>
+        </body>   
+    </html>
+{% endblock %}
 {% endblock %}

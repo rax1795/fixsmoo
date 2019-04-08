@@ -1,0 +1,177 @@
+/*Css for All attritubes in Dashboard*/
+* {
+  box-sizing: border-box; 
+  font-family: Arial, Helvetica, sans-serif; 
+}
+
+body{
+  background-color:whitesmoke;
+  justify-content: center
+ 
+}
+
+/*Main Card Css style*/
+.card{
+  border-radius:2%;
+  
+}
+
+.card-header{
+background-color:white;
+border-bottom: none;
+font-style:bold;
+
+  }
+.card-body #dashboard{
+  border-top: none;
+
+ 
+}
+/*Last Update Css*/
+.lastupdate{
+  margin-top:-25px;
+  font-size: 10px;
+  color: #026670;
+  font-style:bold;
+  
+  }
+/*Card Status Css*/
+.card #cardstatus{
+  color: #2F4F4F;
+  max-width: 18rem;
+  
+}
+#status1{
+  background-color:#fce181;
+  padding:10px;
+  border-color:#A9A9A9;
+  border-radius:5%;
+    }
+#status2{
+  background-color:#efe9c7;
+  padding:10px;
+  border-color:	#A9A9A9;
+  border-radius:5%;
+    }
+#status3{
+  background-color:#9fedd7;
+  padding:10px;
+  border-color:#A9A9A9;
+  border-radius:5%;
+    }
+.card-text{
+  font-size:40px;
+}
+.card-footer{
+  background-color:white;
+  margin:0px;
+  padding-bottom:-10px;
+  
+}
+.card-footer a {
+  color: #026670;
+}
+/*Button Css for "View List"*/
+.button {
+  cursor: pointer;
+  margin: 10px;
+  border-radius: 5px;
+  text-decoration: none;
+  padding: 5px;
+  font-size: 15px;
+  transition: .3s;
+  -webkit-transition: .3s;
+  -moz-transition: .3s;
+  -o-transition: .3s;
+  display: inline-block;
+}
+
+.button {
+  color: #026670;
+  border: 2px #026670 solid;
+}
+
+.button:hover {
+  background-color: #026670;
+  color: #fff
+}
+
+
+/* Chart Style CSS */
+.card #chart {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1); /* this adds the "card" effect */
+  padding: 16px;
+  text-align: center;
+  background-color: #f1f1f1;
+}
+.chartname{
+  font-size:20px;
+  font-style:bold;
+  color:#2F4F4F;
+}
+/*Search Bar in Case Search*/
+#custom-search-input {
+  margin-right:50px;
+  margin-top: 10px;
+  padding: 30px;
+  
+}
+
+#custom-search-input .search-query {
+  padding-right: 3px;
+  padding-right: 4px \9;
+  padding-left: 3px;
+  padding-left: 4px \9;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+  
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+#custom-search-input button {
+  border: 0;
+  background: none;
+  /** belows styles are working good */
+  padding: 2px 5px;
+  margin-top: 2px;
+  position: relative;
+  left: -28px;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.input-group .form-control { 
+  position: relative; 
+  z-index: 2; 
+  float: right; 
+  width: 80%; 
+  margin-bottom: 0; 
+  border-radius:0;
+}
+.btn { 
+  display: inline-block; 
+  padding: .55rem 1rem; 
+  font-size: 1rem; 
+  font-weight: 400; 
+  line-height: 1; 
+  text-align: center; 
+  white-space: nowrap; 
+  vertical-align: middle; 
+  -ms-touch-action: manipulation; 
+  touch-action: manipulation; 
+  cursor: pointer; 
+  user-select: none; 
+  border: .0625rem solid transparent; 
+  border-radius: .15rem; 
+ 
+} 
+ 
+.btn-danger { 
+  color: #fff; 
+  background-color: #d9534f; 
+  border-color: #d9534f; 
+}

@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block app_content %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Custom styles-->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+
+    </head>
+    <body>
+        <div class="text-container">
+    
+            <h1> <img src="/static/fixsmoocry.png" alt="FixSmoo" height="200px" width= "200px" style="float:left"><p style = "font-family:georgia,garamond,serif;font-size:40px;font-style:italic;text-align:left;padding-left:6em;" ><br>An unexpected error has occurred!<img src="/static/warning.png" alt="FixSmoo" height="100px" width= "100px" style="float:center" hspace="20"></br><p style = "font-family:georgia,garamond,serif;font-size:20px;font-style:italic;text-align:left; padding-left:11.5em; "><br>The administrator has been notified. Sorry for the inconvenience! :(</br></h1>
+        </div>
+     
+    </body>
+</html>
+{% endblock %}
+
+
+<h1>An unexpected error has occurred</h1>
+
+

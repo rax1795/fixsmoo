@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %} 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/main.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css" />
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+  </head>
+<body>
+  <div class="container position-absolute">
+      <link rel="stylesheet" href="{{ url_for('static', filename='CSS/shstyle.css') }}">
+      <div class="row">
+        <p>Case ID: {{case.caseID}}</p>
+        <div class="col-md-6">
+            <img style="width:100%; height:auto; " class="rounded img-fluid" src="{{case.photoURL}}">
+        </div>
+        <!-- "https://www.kookaburra.com.au/images/ProductImages/500/ZCRMG030.jpg" -->
+          <table class="col-md-6" style="border-collapse: separate; border-spacing: 15px;">
+            <!-- <thead>
+              <th class="col-md-6 text-left"></th>
+              <th class="col-md-6 text-right"></th>
+              
+            </thead> -->
+            <tr width="100%" >
+                <td class="col-md-3 text-left" colspan="1">User ID : </td>
+                <td class="col-md-3 text-left"colspan="1">{{case.userID}}
+                </td>
+                <td class="col-md-6 text-right" colspan="2">
+                    <div class="btn-group">
+                        <A href="{{ url_for('edit_caseadmin', caseid=case.caseID) }}"><img src="../static/edit.png" style="width:25px;height:25px;">
+                        </A>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <div>
+                    <td class="col-md-3 text-left" colspan="1">Severity:</td>
+                    <td class="col-md-3 text-left text-nowrap" colspan="1">{{severity.severityDesc}}</td>
+                    <td class="col-md-3 text-left" colspan="1">Status:</td>
+                    <td class="col-md-3 text-left text-nowrap" colspan="1">{{status.statusDesc}} </td>
+                </div>
+            </tr>
+            <tr>
+                <td class="col-md-6 text-left" colspan="1">Date Logged: </td>
+                <td class="col-md-6 text-left" colspan="3">{{case.dateTime.date()}}</td>
+            </tr>
+            <tr>
+                <td class="col-md-6 text-left" colspan="1">Date Fixed: </td>
+                <td class="col-md-6 text-left" colspan="3">{{case.fixedDate}}</td>
+            </tr>
+            <tr>
+                <td class="col-md-6 text-left" colspan="1">Building/Location: </td>
+                <td class="col-md-6 text-left" colspan="3">{{building.buildingDesc}}/{{location.locationDesc}}</td>
+            </tr>
+            <tr>
+                <td class="col-md-4 text-left text-nowrap" colspan="1">Level/Unit: </td>
+                <td class="col-md-6 text-left" colspan="3">{{case.level}}</td>
+            </tr>
+            <tr>
+                <td class="col-md-4 text-left">Room Number: </td>
+                <td class="col-md-6 text-left">
+                    <div>{{case.roomNum}}</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4 text-left">Type of Facility: </td>
+                <td class="col-md-6 text-left">
+                    <div>{{facility.facilityDesc}}</div>
+            </tr>
+            <tr>
+                <td colspan="1" class="col-md-6 text-left">Desciption: </td>
+            <td colspan="3" class="col-md-6 text-left">{{case.comments}}</td>
+            </tr>
+            <tr>
+                <td class="col-md-6 text-left" colspan="1">Admin Comments: </td>
+                <td class="col-md-6 text-left" colspan="3">{{case.adminComments}}</td>
+            </tr>
+          </table>
+      </div>
+    </div>
+</body>
+{% endblock %}

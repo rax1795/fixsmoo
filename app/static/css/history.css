@@ -1,0 +1,87 @@
+/*Css for All attritubes in Dashboard*/
+* {
+  box-sizing: border-box; 
+  font-family: Arial, Helvetica, sans-serif; 
+}
+
+body{
+  background-color:whitesmoke;
+  justify-content: center
+}
+
+/*Main Card Css style*/
+
+/*Search Bar in Case Search*/
+#custom-search-input {
+  margin-right:50px;
+  margin-top: 10px;
+  padding: 30px;  
+}
+
+#custom-search-input .search-query {
+  padding-right: 3px;
+  padding-right: 4px \9;
+  padding-left: 3px;
+  padding-left: 4px \9;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+  
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+
+#custom-search-input button {
+  border: 0;
+  background: none;
+  /** belows styles are working good */
+  padding: 2px 5px;
+  margin-top: 2px;
+  position: relative;
+  left: -28px;
+  /* IE7-8 doesn't have border-radius, so don't indent the padding */
+  margin-bottom: 0;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+.exportExcel{
+  padding: 5px;
+  border: 1px solid grey;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.input-group .form-control {
+  position: relative;
+  z-index: 2;
+  float: right;
+  width: 20%;
+  margin-bottom: 0;
+  border-radius:0;
+
+}
+
+.btn {
+  display: inline-block;
+  padding: .45rem 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  border: .0625rem solid transparent;
+  border-radius: .25rem;
+
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d9534f;
+}

@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %} 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css" />
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+      function createDynamicURL()
+      {
+        var URL;
+        URL += "?caseid=";
+        URL += document.getElementById("caseid").innerHTML();
+        alert(URL);
+      }
+      function changedropdown(){
+        document.getElementById('dropdown').innerHTML = (this.id);
+      }
+      $(document).ready(function(){
+        $(".buildingselect li a").click(function(){
+          $(".buildingbtn:first-child").text($(this).text());
+        });
+        $(".facilitiesselect li a").click(function(){
+          $(".facilitiesbtn:first-child").text($(this).text());
+        });
+        $(".statusselect li a").click(function(){
+          $(".statusbtn:first-child").text($(this).text());
+        });
+        $(".severityselect li a").click(function(){
+          $(".severitybtn:first-child").text($(this).text());
+        });
+      })
+    </script>
+  </head>
+<body>
+  <div class="container position-absolute">
+    <div class="container">
+      <link rel="stylesheet" href="{{ url_for('static', filename='CSS/shstyle.css') }}">
+      <div class="row">
+
+      </div>
+      <form action="" method = "post">
+          
+        <div class="row"> 
+            {{ form.hidden_tag() }}
+            <div class="col-md-2">{{ form.building( class_='form-control',placeholder="Select building") }}</div>
+            <div class="col-md-2">{{ form.facility( class_='form-control',placeholder="Select facility") }}</div>
+            <div class="col-md-2">{{ form.status( class_='form-control',placeholder="status") }}</div>
+            <div class="col-md-2">{{ form.severity( class_='form-control',placeholder="Select severity") }}</div>
+            <div class="col-md-2">{{ form.submit(class_='btn btn-primary') }}</div>
+
+            <!-- <div class="btn-group">
+                <button class="btn dropdown-toggle btn-success buildingbtn" data-toggle="dropdown" href="#">Building</button><input name="building"/>
+                <ul class="dropdown-menu buildingselect">
+                  {% for i in building %}
+                    <li><a href="#">{{i['buildingDesc']}}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+              <div class="btn-group">
+                  <a class="btn dropdown-toggle btn-info facilitiesbtn" data-toggle="dropdown" href="#">Facilities<input type="submit" value="Submit"></a>
+                  <ul class="dropdown-menu facilitiesselect">
+                    {% for i in facilities %}
+                      <li><a href="#">{{i['facilityDesc']}}</a></li>
+                    {% endfor %}
+                  </ul>
+              </div>
+              <div class="btn-group">
+                  <a class="btn dropdown-toggle btn-warning statusbtn" data-toggle="dropdown" href="#">Status<input type="submit" value="Submit"></a>
+                  <ul class="dropdown-menu statusselect">
+                    {% for i in status %}
+                      <li><a href="#">{{i['statusDesc']}}</a></li>
+                    {% endfor %}
+                  </ul>
+              </div>
+              <div class="btn-group">
+                  <a class="btn dropdown-toggle btn-danger severitybtn" data-toggle="dropdown" href="#">Severity<input type="submit" value="Submit"></a>
+                  <ul class="dropdown-menu severityselect">
+                    {% for i in severity %}
+                      <li><a href="#">{{i['severityDesc']}}</a></li>
+                    {% endfor %}
+                  </ul>
+                  <button type="button" class="btn btn-secondary">Filter<input type="submit" value="submit"/></button>
+              </div> -->
+          </div>
+      </form>
+      <!-- start of for loop -->
+      {% for i in pages.items %}
+      <a href="{{ url_for('casedetail', caseid=i.caseID)}}">
+      <div class="col-md-4" data-toggle="tooltip" title="Click for More Info">
+        <div class="explore-card">
+          <div style="text-align:center;">      
+          <img style="width:150px; height:150px; " class="card-img-top rounded img-fluid" src= "{{i.photoURL}}" alt="Card image cap"> 
+        </div>
+        <div class="explore-card-body">
+            <p class="card-text text-left" style="font-size:15px">
+                <em id="caseid">Case ID: {{i['caseID']}}</em><em></em>
+            </p>
+          <p class="explore-card-text text-left" style="font-size:15px">
+              <em>Description: </em><em>{{i['comments']}}</em>
+          </p>
+          <p class="explore-card-text text-left" style="font-size:15px">
+              <em>Status: </em>
+              <em>{{i['statusDesc']}}</em>
+              <img src="http://www.clker.com/cliparts/u/g/F/R/X/9/green-circle-md.png" style="width:15px;height:15px;">
+          </p>
+          <p class="explore-card-text text-left" style="font-size:15px">
+              <em>Building: </em>
+              <em>{{i['buildingDesc']}}</em>
+          </p>
+          <p class="explore-card-text text-left" style="font-size:15px">
+              <em>Facilties: </em>
+              <em>{{i['facilityDesc']}}</em>
+          </p>
+          <p class="card-text text-left" style="font-size:15px">
+              <em>Severity: </em>
+              <em>{{i['severityDesc']}}</em>
+              <img src="../static/severity.png" style="width:15px;height:15px;">
+          </p>
+          <p class="explore-card-text text-left" style="font-size:15px">
+              <em>Date Logged: </em>
+              <em>{{i['dateTime']}}</em>
+          </p>
+          </div>
+        </div>
+      </div>
+    </a>
+      {% endfor %}
+      <div style="text-align:center;" class="col-md-12">
+          <nav aria-label="...">
+              <ul class="pagination">
+                {%for page in pages.iter_pages()%}
+                  {% if page %}  
+                  <li class="page-item">
+                    <a href="{{url_for('caselist',page=page)}}">{{page}}</a>
+                  </li>
+                  {%else%}
+                  ...
+                  {% endif %}
+                  {% endfor %}
+              </ul>
+            </nav>
+          </div>
+  <!-- <div style="text-align:center;">
+    <nav aria-label="...">
+        <ul class="pagination">
+            <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active">
+            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
+      </nav>
+    </div> -->
+</body>
+{% endblock %}

@@ -1,0 +1,49 @@
+
+
+{% block app_content %}
+    <h1>Sign In</h1>
+    <div class="container center_div">
+        <div class="col-md-4 ">
+            {{ wtf.quick_form(form) }}
+        </div>
+    </div>
+    <br>
+    <p>New User? <a href="{{ url_for('register') }}">Click to Register!</a></p>
+    <p>
+        Forgot Your Password?
+        <a href="">Click to Reset It</a>
+    </p>
+{% endblock %}
+
+
+
+@app.route('/GetUserPoints', methods=['GET'])
+def getPoints():
+    if 'username' in request.args:
+        username = str(request.args.get('username'))
+        user = User.query.filter_by(username=username).first()
+        if user is None:
+            return jsonify({})
+        elif 'userType' in request.args:
+            userType = str(request.args.get('userType'))
+            if user.userType == userType:
+                if 'minPoints' in request.args:
+                    minPoints = int(request.args.get('minPoints'))
+                    if 'maxPoints' in request.args:
+                        maxPoints = int(request.args.get('maxPoints'))
+                        if minPoints >= user.points <=maxPoints:
+                            return jsonify(user.searialize())
+                        else:
+                            return jsonify({})
+                    elif minPoints >= user.points:
+                        return jsonify(user.searialize())
+                    else:
+                        return jsonify({})
+                elif 'maxPoints' in request.args:
+                    maxPoints = int(request.args.get('maxPoints'))
+                    if user.points <=maxPoints:
+                        return jsonify(user.searialize())
+                    else:
+                        return jsonify({})
+            else:
+                return jsonify({})

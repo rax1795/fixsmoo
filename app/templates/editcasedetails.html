@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block content %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-info" role="alert">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+{% endwith %}
+
+{% block app_content %} 
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/main.css') }}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css" />
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+  </head>
+<body>
+<form action="" method="post">
+        {{ form.hidden_tag() }}
+  <div class="container position-absolute">
+      <link rel="stylesheet" href="{{ url_for('static', filename='CSS/shstyle.css') }}">
+      <div class="row">
+        <p>Case ID: {{case.caseID}}</p>
+        <div class="col-md-4">
+            <img style="width:100%; height:auto; " class="rounded img-fluid" src="{{case.photoURL}}">
+        </div>
+        <!-- "https://www.kookaburra.com.au/images/ProductImages/500/ZCRMG030.jpg" -->
+          <table class="col-md-8" style="border-collapse: separate; border-spacing: 15px;">
+            <!-- <thead>
+              <th class="col-md-6 text-left"></th>
+              <th class="col-md-6 text-right"></th>
+                
+            </thead> -->
+            <tr width="100%" >
+                <td class="col-md-3 text-left" colspan="1">User ID : </td>
+                <td class="col-md-3 text-left"colspan="1">{{case.userID}}
+                </td>
+                <td class="col-md-6 text-right" colspan="2">
+                    {{ form.submit() }}
+                </td>
+            </tr>
+            <tr>
+                <div>
+                    <td class="col-md-3 text-left" colspan="1">Severity:</td>
+                    <td class="col-md-3 text-left text-nowrap" colspan="1">{{form.severity}} <img src="https://www.iconsdb.com/icons/preview/red/exclamation-xxl.png" style="width:15px;height:15px;"></td>
+                    <td class="col-md-3 text-left" colspan="1">Status:</td>
+                    <td class="col-md-3 text-left text-nowrap" colspan="1">{{status.statusDesc}}  <img src="http://www.clker.com/cliparts/u/g/F/R/X/9/green-circle-md.png" style="width:15px;height:15px;"></td>
+                </div>
+            </tr>
+            <tr>
+                <td class="col-md-6 text-left" colspan="1">Date Logged: </td>
+                <td class="col-md-6 text-left" colspan="3">{{case.dateTime.date()}}</td>
+            </tr>
+            <tr>
+                <td class="col-md-6 text-left" colspan="1">Date Fixed: </td>
+                <td class="col-md-6 text-left" colspan="3">{{case.fixedDate}}</td>
+            </tr>
+            <tr>
+                <td class="col-md-6 text-left" colspan="1">Building/Location: </td>
+                <td class="col-md-6 text-left" colspan="3">{{form.building}}/{{form.location}}</td>
+            </tr>
+            <tr>
+                <td class="col-md-4 text-left text-nowrap" colspan="1">Level/Unit: </td>
+                <td class="col-md-6 text-left" colspan="3">{{form.level}} (Re-select building before selecting this) </td>
+            </tr>
+            <tr>
+                <td class="col-md-4 text-left">Room Number: </td>
+                <td class="col-md-6 text-left">
+                    <div>{{form.unit}}</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4 text-left">Type of Facility: </td>
+                <td class="col-md-6 text-left">
+                    <div>{{form.facility}}</div>
+            </tr>
+            <tr>
+                <td colspan="1" class="col-md-6 text-left">Desciption: </td>
+            <td colspan="3" class="col-md-6 text-left">{{form.description}}</td>
+            </tr>
+            <tr>
+                <td class="col-md-6 text-left" colspan="1">Admin Comments: </td>
+                <td class="col-md-6 text-left" colspan="3">{{case.adminComments}}</td>
+            </tr>
+          </table>
+      </div>
+    </div>
+</form>
+<script>
+        let building_select = document.getElementById('building');
+        let level_select = document.getElementById('level');
+
+        building_select.onclick = function () {
+            building = building_select.value;
+
+            fetch('/floor/' + building).then(function (response) {
+                response.json().then(function (data) {
+                    // console.table(data);
+                    let = optionHTML = '';
+                    for (let level of data.levels) {
+                        optionHTML += '<option value="' + level.id + '">' + level.lvl + '</option>';
+                    }
+
+                    level_select.innerHTML = optionHTML;
+                });
+            });
+        };
+    </script>
+    <script>
+            let building2_select = document.getElementById('building');
+            let location_select = document.getElementById('location');
+            building2_select.onchange = function () {
+                building = building2_select.value;
+                fetch('/location/' + building).then(function (response) {
+                    response.json().then(function (data) {
+                        // console.table(data);
+                        let = optionHTML = '';
+                        for (let location of data.locations) {
+                            optionHTML += '<option value="' + location.id + '">' + location.location + '</option>';
+                        }
+                        location_select.innerHTML = optionHTML;
+                    });
+                });
+            };
+        </script>
+        <script>
+                let location2_select = document.getElementById('location');
+                let facility_select = document.getElementById('facility');
+                location2_select.onclick = function () {
+                    locations = location2_select.value;
+                    fetch('/facility/'+locations).then(function (response) {
+                        response.json().then(function (data) {
+                            //console.table(data);
+                            let = optionHTML = '';
+                            for (let facility of data.facilitys) {
+                                optionHTML += '<option value="' + facility.id + '">' + facility.facility + '</opt>';
+                            }
+                            facility_select.innerHTML = optionHTML;
+                        });
+                    });
+                };
+        </script>
+</body>
+{% endblock %}
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Your case has been submitted </h1>
+    <p>Your case ID is {{caseid}} , You can search for your case progress using this ID!</p>
+    <p><a href="{{ url_for('index') }}">Return to Home</a></p>
+{% endblock %}
